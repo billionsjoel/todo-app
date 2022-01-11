@@ -1,3 +1,54 @@
 body {
-  background-color: red;
+  background-color: #eeeeee;
+}
+
+h1 {
+  text-align: center;
+}
+.container {
+  max-width: 20%;
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #b3b2b2;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items:center ;
+  margin: 0 1rem;
+}
+
+.input-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 1rem;
+}
+
+.input-field {
+  height: 2rem !important;
+  width: 90%;
+  border: none !important;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.enter-icon {
+  transform: rotate(360deg);
+  transform: scaleY(-1);
+}
+
+ul {
+  list-style: none;
+  margin-left: -2.5rem;
+  padding-bottom: 1rem;
+}
+
+ul > li {
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
 }
