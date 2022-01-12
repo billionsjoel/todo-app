@@ -41,14 +41,27 @@ h1 {
   transform: scaleY(-1);
 }
 
-ul {
+input:focus {
+  outline: none;
+}
+
+.ul {
   list-style: none;
-  margin-left: -2.5rem;
   padding-bottom: 1rem;
 }
 
-ul > li {
-  padding: 0.5rem;
+.li {
   display: flex;
   justify-content: space-between;
+  padding:  1rem;
+}
+
+.li:not(:last-child){
+  border-bottom: 1px solid #b3b2b2;
+}
+
+.remove-all {
+  text-align: center;
+  background-color: #eeeeee;
+  padding: 1.2rem;
 }
