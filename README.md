@@ -9,8 +9,9 @@ designed or worked on.
 
 ## Built With
 
-- HTML and CSS.
+- HTML, CSS and Js.
 - No Frameworks
+- Webpack
 - Git, Github and VsCode.
 
 ### Active Link
