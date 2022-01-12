@@ -22,24 +22,26 @@ h1 {
   margin: 0 1rem;
 }
 
-.input-form {
+.task-form {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 1rem;
+  width: 100%;
 }
 
 .input-field {
   height: 2rem !important;
-  width: 90%;
   border: none !important;
   padding-left: 1rem;
   padding-right: 1rem;
+  margin-left: 1rem;
+  overflow: none !important;
 }
 
 .enter-icon {
   transform: rotate(360deg);
   transform: scaleY(-1);
+  margin-right: 1rem;
 }
 
 input:focus {
