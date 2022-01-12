@@ -1,10 +1,11 @@
 body {
-  background-color: #eeeeee;
+  background-color: #eee;
 }
 
 h1 {
   text-align: center;
 }
+
 .container {
   max-width: 20%;
   background-color: rgb(255, 255, 255);
@@ -17,7 +18,7 @@ h1 {
 .header {
   display: flex;
   justify-content: space-between;
-  align-items:center ;
+  align-items: center;
   margin: 0 1rem;
 }
 
@@ -53,15 +54,15 @@ input:focus {
 .li {
   display: flex;
   justify-content: space-between;
-  padding:  1rem;
+  padding: 1rem;
 }
 
-.li:not(:last-child){
+.li:not(:last-child) {
   border-bottom: 1px solid #b3b2b2;
 }
 
 .remove-all {
   text-align: center;
-  background-color: #eeeeee;
+  background-color: #eee;
   padding: 1.2rem;
 }
