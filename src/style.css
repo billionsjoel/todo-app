@@ -68,3 +68,8 @@ input:focus {
   background-color: #eee;
   padding: 1.2rem;
 }
+
+.rotate {
+  transition: transform .7s ease-in-out;
+  transform: rotate(1.5turn);
+}
