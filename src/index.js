@@ -80,13 +80,13 @@ document.querySelectorAll('li .check').forEach((input) => {
   });
 });
 
-document.querySelectorAll('.delete-icon').forEach((delBtn) => {
-  delBtn.addEventListener('click', () => {
-    const id = Number(delBtn.parentNode.parentNode.id.split('-')[1]);
+document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
+  deleteButton.addEventListener('click', () => {
+    const id = Number(deleteButton.parentNode.parentNode.id.split('-')[1]);
 
     removeTask(storedTasks, id);
     storedTasks = JSON.parse(localStorage.getItem('addTaskToStorage'));
-    delBtn.parentNode.parentNode.remove();
+    deleteButton.parentNode.parentNode.remove();
   });
 });
 
