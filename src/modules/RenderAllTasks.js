@@ -1,13 +1,16 @@
+const storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
 const ul = document.querySelector('.ul');
 
-const renderTask = (task) => {
-  if (task) {
-    const li = `<li class="li" id="task-${task.index}">
+const renderAllTasks = (storedTasks) => {
+  if (storedTasks) {
+    const li = `<li class="li" id="task-${storedTasks.index}">
 <div class="inputs">
     <input type="checkbox" class="check" name="checkTask" ${
-  task.completed ? 'checked' : ''
+  storedTasks.completed ? 'checked' : ''
 }>
-    <input type="text" value="${task.description}" class="label input" readonly>
+    <input type="text" value="${
+  storedTasks.description
+}" class="label input" readonly>
 </div>
 <div class="input-icons">
 <svg height="15" width="15" xmlns="http://www.w3.org/2000/svg" class="drag" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -19,10 +22,12 @@ const renderTask = (task) => {
 </div>
 </li>`;
     ul.innerHTML += li;
-    window.location.reload();
   }
 };
 
-renderTask();
+storedTasks.map((task) => {
+  renderAllTasks(task);
+  return task;
+});
 
-export { renderTask as default };
+export { renderAllTasks as default };
