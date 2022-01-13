@@ -5,6 +5,7 @@ import addTask from './modules/AddTask.js';
 import renderAllTasks from './modules/RenderAllTasks.js';
 import updateTask from './modules/UpdateTask.js';
 import removeTask from './modules/RemoveTask.js';
+import removeAllCompleted from './modules/removeAllCompletedTasks.js';
 
 const refresh = document.querySelector('.refresh');
 const pushTaskToDom = document.querySelector('.add-task');
@@ -66,6 +67,19 @@ document.querySelectorAll('li .input').forEach((input) => {
   });
 });
 
+document.querySelectorAll('li .check').forEach((input) => {
+  input.addEventListener('change', () => {
+    const storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
+    const taskID = Number(input.parentNode.parentNode.id.split('-')[1]);
+
+    const filteredTask = storedTasks.find((task) => task.index === taskID);
+
+    filteredTask.completed = input.checked;
+
+    updateTask(storedTasks, filteredTask);
+  });
+});
+
 document.querySelectorAll('.delete-icon').forEach((delBtn) => {
   delBtn.addEventListener('click', () => {
     const id = Number(delBtn.parentNode.parentNode.id.split('-')[1]);
@@ -74,4 +88,9 @@ document.querySelectorAll('.delete-icon').forEach((delBtn) => {
     storedTasks = JSON.parse(localStorage.getItem('addTaskToStorage'));
     delBtn.parentNode.parentNode.remove();
   });
+});
+
+const removeAll = document.querySelector('.remove-all');
+removeAll.addEventListener('click', () => {
+  removeAllCompleted();
 });

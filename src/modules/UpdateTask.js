@@ -1,11 +1,11 @@
-function updateTask(allTasks, task) {
-  allTasks[task.index - 1] = task;
+function updateTask(filteredTask, taskID) {
+  filteredTask[taskID.index - 1] = taskID;
 
   document
     .querySelectorAll('li')
-    .forEach((elm) => elm.classList.remove('active'));
+    .forEach((li) => li.classList.remove('active'));
 
-  localStorage.setItem('addTaskToStorage', JSON.stringify(allTasks));
+  localStorage.setItem('addTaskToStorage', JSON.stringify(filteredTask));
 }
 
 export { updateTask as default };

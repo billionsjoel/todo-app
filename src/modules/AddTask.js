@@ -8,7 +8,7 @@ const addTask = () => {
   const form = document.querySelector('.task-form');
   const description = form.elements.task.value;
   const completed = false;
-  const index = allTasks.length + 1;
+  const index = storedTasks.length + 1;
 
   const task = new Task(description, completed, index);
   allTasks = storedTasks || [];
