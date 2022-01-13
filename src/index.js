@@ -23,10 +23,10 @@ if (pushTaskToDom) {
   pushTaskToDom.addEventListener('click', addTask);
 }
 
-function spin() {
+const spin = () => {
   refresh.classList.add('rotate');
   setTimeout(() => refresh.classList.remove('rotate'), 1000);
-}
+};
 
 if (refresh) {
   refresh.addEventListener('click', spin);
