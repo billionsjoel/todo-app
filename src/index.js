@@ -3,27 +3,75 @@ import compare from './modules/Compare.js';
 import renderTask from './modules/RenderTask.js';
 import addTask from './modules/AddTask.js';
 import renderAllTasks from './modules/RenderAllTasks.js';
+import updateTask from './modules/UpdateTask.js';
+import removeTask from './modules/RemoveTask.js';
 
 const refresh = document.querySelector('.refresh');
 const pushTaskToDom = document.querySelector('.add-task');
 const allTasks = [];
+let storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
 
 allTasks.sort(compare).map((task) => {
-	renderTask(task);
-	return task;
+  renderTask(task);
+  return task;
 });
 
 renderAllTasks();
 
 if (pushTaskToDom) {
-	pushTaskToDom.addEventListener('click', addTask);
+  pushTaskToDom.addEventListener('click', addTask);
 }
 
 function spin() {
-	refresh.classList.add('rotate');
-	setTimeout(() => refresh.classList.remove('rotate'), 1000);
+  refresh.classList.add('rotate');
+  setTimeout(() => refresh.classList.remove('rotate'), 1000);
 }
 
 if (refresh) {
-	refresh.addEventListener('click', spin);
+  refresh.addEventListener('click', spin);
 }
+
+const allListItems = document.querySelectorAll('li');
+allListItems.forEach((li) => {
+  li.addEventListener('click', (e) => {
+    const listTarget = e.target;
+    if (
+      listTarget.classList.contains('drag') || listTarget.classList.contains('check')
+    ) {
+      return;
+    }
+
+    allListItems.forEach((listTarget) => listTarget.classList.remove('active'));
+    li.classList.add('active');
+
+    const inputListItem = li.querySelector('.input');
+    inputListItem.readOnly = false;
+    inputListItem.focus();
+    inputListItem.setSelectionRange(
+      inputListItem.value.length,
+      inputListItem.value.length,
+    );
+  });
+});
+
+document.querySelectorAll('li .input').forEach((input) => {
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      const taskID = Number(input.parentNode.parentNode.id.split('-')[1]);
+      const filteredTask = storedTasks.find((task) => task.index === taskID);
+      filteredTask.description = input.value.trim();
+      updateTask(storedTasks, filteredTask);
+      input.readOnly = true;
+    }
+  });
+});
+
+document.querySelectorAll('.delete-icon').forEach((delBtn) => {
+  delBtn.addEventListener('click', () => {
+    const id = Number(delBtn.parentNode.parentNode.id.split('-')[1]);
+
+    removeTask(storedTasks, id);
+    storedTasks = JSON.parse(localStorage.getItem('addTaskToStorage'));
+    delBtn.parentNode.parentNode.remove();
+  });
+});

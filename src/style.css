@@ -35,7 +35,11 @@ h1 {
   padding-left: 1rem;
   padding-right: 1rem;
   margin-left: 1rem;
-  overflow: none !important;
+}
+
+.input {
+  outline: none;
+  border: none;
 }
 
 .enter-icon {
@@ -46,6 +50,11 @@ h1 {
 
 input:focus {
   outline: none;
+}
+
+.inputs {
+  display: flex;
+  gap: 1rem;
 }
 
 .ul {
@@ -70,6 +79,31 @@ input:focus {
 }
 
 .rotate {
-  transition: transform .7s ease-in-out;
+  transition: transform 0.7s ease-in-out;
   transform: rotate(1.5turn);
+}
+
+.active {
+  background-color: rgb(248, 239, 158);
+  color: orange;
+}
+
+.delete-icon {
+  display: none;
+}
+
+.drag {
+  cursor: move;
+}
+
+.active .drag {
+  display: none;
+}
+
+.active .delete-icon {
+  display: block;
+}
+
+.check:checked + .input {
+  text-decoration: line-through;
 }
