@@ -9,6 +9,8 @@ import removeAllCompleted from './modules/removeAllCompletedTasks.js';
 
 const refresh = document.querySelector('.refresh');
 const pushTaskToDom = document.querySelector('.add-task');
+const inputField = document.querySelector('.input-field');
+
 const allTasks = [];
 let storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
 
@@ -21,6 +23,11 @@ renderAllTasks();
 
 if (pushTaskToDom) {
   pushTaskToDom.addEventListener('click', addTask);
+  inputField.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      addTask();
+    }
+  });
 }
 
 const spin = () => {
