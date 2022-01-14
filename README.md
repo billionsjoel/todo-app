@@ -15,7 +15,7 @@ designed or worked on.
 - Git, Github and VsCode.
 
 ### Active Link
- - Click [here](https://billionsjoel.github.io/) for the live site.
+ - Click [here](https://billionsjoel.github.io/todo-app/) for the live site.
 
 ## Getting Started
 
