@@ -2,19 +2,18 @@
 
 # Todo List App
 
-> A project that shows my portfolio, technologies and links to the projects i have
-designed or worked on.
+> The app helps you to add todo items to your list, mark completed ones and also delete finished items. Its a handy tool for your day today activies. Check out the live demo.
 
 ![screenshot](./app-screenshot.png)
 
 ## Built With
 
-- HTML, CSS and Js.
+- HTML, CSS and Js (ES6).
 - No Frameworks
 - Webpack
 - Git, Github and VsCode.
 
-### Active Link
+### Live Demo
  - Click [here](https://billionsjoel.github.io/todo-app/) for the live site.
 
 ## Getting Started
