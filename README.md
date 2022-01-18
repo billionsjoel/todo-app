@@ -4,7 +4,7 @@
 
 > The app helps you to add todo items to your list, mark completed ones and also delete finished items. Its a handy tool for your day today activies. Check out the live demo.
 
-![screenshot](./app-screenshot.png)
+![screenshot](./app-screenshot1.png)
 
 ## Built With
 
