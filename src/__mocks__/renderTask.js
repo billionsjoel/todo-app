@@ -1,18 +1,18 @@
 const task = [
-	{
-		description: 'task1',
-		completed: false,
-		index: 1,
-	},
+  {
+    description: 'task1',
+    completed: false,
+    index: 1,
+  },
 ];
 const renderTask = (ul) => {
-	let li = '';
-	if (task) {
-		li = `<li class="li" id="task-${task.index}">
+  let li = '';
+  if (task) {
+    li = `<li class="li" id="task-${task.index}">
     <div class="inputs">
     <input type="checkbox" class="check" name="checkTask" ${
-			task.completed ? 'checked' : ''
-		}>
+  task.completed ? 'checked' : ''
+}>
     <input type="text" value="${task.description}" class="label input" readonly>
 </div>
 <div class="input-icons">
@@ -24,11 +24,9 @@ const renderTask = (ul) => {
 </svg>
 </div>
 </li>`;
-		ul.innerHTML += li;
-	}
-	if (li) {
-		return ul.getElementsByTagName('li').length >= 1;
-	}
+    ul.innerHTML += li;
+  }
+  return ul.getElementsByTagName('li').length >= 1;
 };
 
 module.exports = renderTask;
