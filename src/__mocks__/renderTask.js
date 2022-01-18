@@ -26,6 +26,7 @@ const renderTask = (ul) => {
 </li>`;
     ul.innerHTML += li;
   }
+
   return ul.getElementsByTagName('li').length >= 1;
 };
 

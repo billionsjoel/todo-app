@@ -1,8 +1,8 @@
-const removeTask = (index = 1) => {
+const removeTask = (storedTasks, index = 1) => {
   let allTasks = [
     { description: 'task 1', completed: false, index: 1 },
     { description: 'task 2', completed: false, index: 2 },
-  ];
+  ] || storedTasks;
 
   allTasks = allTasks.filter((task) => task.index !== index);
   allTasks = allTasks.map((task) => {

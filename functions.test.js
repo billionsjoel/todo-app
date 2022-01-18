@@ -21,6 +21,9 @@ test('Check to add atleast one <li>', () => {
 	expect(renderTask(ul)).toBe(true);
 });
 
-test('Deleted one Item', () => {
-	expect(removeTask(1)).toBe(true);
+test('Deleted from DOM', () => {
+  const storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage'));
+  removeTask(storedTasks, 1);
+  const task = localStorage.setItem('addTaskToStorage', JSON.stringify([{ description: 'task 1', completed: false, index: 1 }]));
+  expect(task).not.toBeDefined();
 });
