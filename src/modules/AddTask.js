@@ -1,7 +1,7 @@
 import Task from './TaskClass.js';
 import renderTask from './RenderTask.js';
 
-const storedTasks =	JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
+const storedTasks = JSON.parse(window.localStorage.getItem('addTaskToStorage')) || [];
 let allTasks = [];
 
 const addTask = () => {
