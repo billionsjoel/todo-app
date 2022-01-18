@@ -26,11 +26,8 @@ describe('Testing Task operations', () => {
     const storedTasks = JSON.parse(
       window.localStorage.getItem('addTaskToStorage'),
     );
-    removeTask(storedTasks, 1);
-    const task = localStorage.setItem(
-      'addTaskToStorage',
-      JSON.stringify([{ description: 'task 1', completed: false, index: 1 }]),
-    );
-    expect(task).not.toBeDefined();
+    expect(removeTask(storedTasks, 1)).toMatchObject([
+      { description: 'task 2', completed: false, index: 1 },
+    ]);
   });
 });

@@ -14,5 +14,4 @@ const removeTask = (storedTasks, index = 1) => {
   return allTasks;
 };
 
-removeTask();
 export { removeTask as default };
