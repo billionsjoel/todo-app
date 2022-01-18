@@ -4,7 +4,7 @@
   "description": "",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack",
     "start": "webpack-dev-server --mode development --open"
   },
@@ -18,10 +18,18 @@
   "bugs": {
     "url": "https://github.com/billionsjoel/todo-app/issues"
   },
+  "jest":{
+      "testEnvironment": "jsdom"
+  },
   "homepage": "https://github.com/billionsjoel/todo-app#readme",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "babel-core": "^6.26.3",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.4.6",
+    "babel-loader": "^8.2.3",
+    "babel-preset-env": "^1.7.0",
     "css-loader": "^6.5.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
