@@ -4,7 +4,7 @@ const tasks = new Tasks();
 
 describe('Testing add method ', () => {
 	test('first element added', () => {
-		tasks.addTask({ description: 'First task' });
+		tasks.addTask({ description: 'First task added' });
 		expect(tasks.allTasks.length).toBe(1);
 	});
 
