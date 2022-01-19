@@ -81,7 +81,6 @@ const renderTasks = () => {
 		inp.addEventListener('input', () => {
 			const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
 			const obj = tasks.allTasks.find((t) => t.index === id);
-			console.log(obj);
 			obj.description = inp.value.trim();
 			tasks.editTask(obj);
 			saveTasks();
