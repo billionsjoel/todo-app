@@ -112,21 +112,21 @@ const render = () => {
 	document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
 		deleteButton.addEventListener('click', () => {
 			const id = Number(deleteButton.parentNode.parentNode.id.split('-')[1]);
-			task.remove(id);
+			tasks.remove(id);
 			saveTasks();
 			deleteButton.parentNode.parentNode.remove();
 		});
-  });
-  
-	const removeAll = document.querySelector('.remove-all');
-	removeAll.addEventListener('click', () => {
-		tasks.clearCompleted();
-		saveTasks();
-		render();
 	});
 };
 
 render();
+
+const removeAll = document.querySelector('.remove-all');
+removeAll.addEventListener('click', () => {
+	tasks.clearCompleted();
+	saveTasks();
+	render();
+});
 
 if (pushTaskToDom) {
 	form.addEventListener('submit', (e) => {
