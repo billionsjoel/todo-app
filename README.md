@@ -4,7 +4,7 @@
 
 > The app helps you to add todo items to your list, mark completed ones and also delete finished items. Its a handy tool for your day today activies. Check out the live demo.
 
-![screenshot](./app-screenshot.png)
+![screenshot](./app-screenshot1.png)
 
 ## Built With
 
@@ -12,6 +12,7 @@
 - No Frameworks
 - Webpack
 - Git, Github and VsCode.
+-jest framework
 
 ### Live Demo
  - Click [here](https://billionsjoel.github.io/todo-app/) for the live site.
@@ -34,6 +35,10 @@ To get a local copy up and running follow these simple example steps.
  - run npm build
  - run npm start
 
+### Tests
+- run npm test
+
+
 ### Usage
 - open index.html file with a server or localhost.
 
@@ -43,7 +48,13 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@billionsjoel](https://github.com/billionsjoel)
 - Twitter: [@billionsjoel](https://twitter.com/BillionsJoel)
-- LinkedIn: [@billionsjoel](https://www.linkedin.com/in/billionsjoel/)
+- LinkedIn: [billionsjoel](https://www.linkedin.com/in/billionsjoel/)
+
+👤 **Mugisha Samuel**
+
+- GitHub: [@mugishasamuel](https://github.com/mugishasam123)
+- Twitter: [@mugishasamuel](https://twitter.com/mugishasamuel42/)
+- LinkedIn: [billionsjoel](https://www.linkedin.com/in/mugisha-samuel-55a905208/)
 
 
 ## 🤝 Contributing
