@@ -1,29 +1,20 @@
 import './style.css';
-//import compare from './modules/Compare.js';
-//import renderTask from './modules/RenderTask.js';
-//import addTask from './modules/AddTask.js';
-//import renderAllTasks from './modules/RenderAllTasks.js';
-//import updateTask from './modules/UpdateTask.js';
-//import removeTask from './modules/RemoveTask.js';
-//import removeAllCompleted from './modules/removeAllCompletedTasks.js';
-
-import Tasks from './modules/TaskClass.js';
+import Tasks from './modules/TasksClass.js';
 
 const refresh = document.querySelector('.refresh');
-const pushTaskToDom = document.querySelector('.add-task');
 const form = document.querySelector('.task-form');
 const ul = document.querySelector('.ul');
 
 const tasks = new Tasks(localStorage.getItem('tasks'));
 
 const saveTasks = () => {
-	localStorage.setItem('tasks', JSON.stringify(tasks.list));
+	localStorage.setItem('tasks', JSON.stringify(tasks.allTasks));
 };
 
-const render = () => {
+const renderTasks = () => {
 	ul.innerHTML = '';
 
-	tasks.list
+	tasks.allTasks
 		.sort((a, b) => a.index - b.index)
 		.forEach((task) => {
 			ul.innerHTML += `<li class="li" id="task-${task.index}">
@@ -89,10 +80,10 @@ const render = () => {
 
 		inp.addEventListener('input', () => {
 			const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
-			const obj = tasks.list.find((t) => t.index === id);
+			const obj = tasks.allTasks.find((t) => t.index === id);
 			console.log(obj);
 			obj.description = inp.value.trim();
-			tasks.edit(obj);
+			tasks.editTask(obj);
 			saveTasks();
 		});
 	});
@@ -101,11 +92,11 @@ const render = () => {
 		input.addEventListener('change', () => {
 			const id = Number(input.parentNode.parentNode.id.split('-')[1]);
 
-			const obj = tasks.list.find((task) => task.index === id);
+			const obj = tasks.allTasks.find((task) => task.index === id);
 
 			obj.completed = input.checked;
 
-			tasks.edit(obj);
+			tasks.editTask(obj);
 			saveTasks();
 		});
 	});
@@ -113,28 +104,28 @@ const render = () => {
 	document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
 		deleteButton.addEventListener('click', () => {
 			const id = Number(deleteButton.parentNode.parentNode.id.split('-')[1]);
-			tasks.remove(id);
+			tasks.removeTask(id);
 			saveTasks();
 			deleteButton.parentNode.parentNode.remove();
 		});
 	});
 };
 
-render();
+renderTasks();
 
 const removeAll = document.querySelector('.remove-all');
 removeAll.addEventListener('click', () => {
-	tasks.clearCompleted();
+	tasks.clearMarkedTasks();
 	saveTasks();
-	render();
+	renderTasks();
 });
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
-	tasks.add({
+	tasks.addTask({
 		description: form.elements.input.value.trim(),
 	});
 	saveTasks();
 	form.reset();
-	render();
+	renderTasks();
 });
