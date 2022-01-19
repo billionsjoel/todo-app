@@ -13,3 +13,9 @@ describe('Testing add method ', () => {
 		expect(tasks.allTasks[1].description).toBe('New Task');
 	});
 });
+
+test('first element deleted', () => {
+	const taskID = 1;
+	tasks.removeTask(taskID);
+	expect(tasks.allTasks.length).toBe(1);
+});
