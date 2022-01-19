@@ -1,12 +1,4 @@
 import './style.css';
-//import compare from './modules/Compare.js';
-//import renderTask from './modules/RenderTask.js';
-//import addTask from './modules/AddTask.js';
-//import renderAllTasks from './modules/RenderAllTasks.js';
-//import updateTask from './modules/UpdateTask.js';
-//import removeTask from './modules/RemoveTask.js';
-//import removeAllCompleted from './modules/removeAllCompletedTasks.js';
-
 import Tasks from './modules/TaskClass.js';
 
 const refresh = document.querySelector('.refresh');
