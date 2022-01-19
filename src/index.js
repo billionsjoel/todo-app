@@ -1,4 +1,12 @@
 import './style.css';
+//import compare from './modules/Compare.js';
+//import renderTask from './modules/RenderTask.js';
+//import addTask from './modules/AddTask.js';
+//import renderAllTasks from './modules/RenderAllTasks.js';
+//import updateTask from './modules/UpdateTask.js';
+//import removeTask from './modules/RemoveTask.js';
+//import removeAllCompleted from './modules/removeAllCompletedTasks.js';
+
 import Tasks from './modules/TaskClass.js';
 
 const refresh = document.querySelector('.refresh');
@@ -80,8 +88,9 @@ const render = () => {
 		});
 
 		inp.addEventListener('input', () => {
-			const taskID = Number(inp.parentNode.parentNode.id.split('-')[1]);
-			const obj = tasks.list.find((task) => task.index === taskID);
+			const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
+			const obj = tasks.list.find((t) => t.index === id);
+			console.log(obj);
 			obj.description = inp.value.trim();
 			tasks.edit(obj);
 			saveTasks();
@@ -120,14 +129,12 @@ removeAll.addEventListener('click', () => {
 	render();
 });
 
-if (pushTaskToDom) {
-	form.addEventListener('submit', (e) => {
-		e.preventDefault();
-		tasks.add({
-			description: form.elements.input.value.trim(),
-		});
-		saveTasks();
-		form.reset();
-		render();
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	tasks.add({
+		description: form.elements.input.value.trim(),
 	});
-}
+	saveTasks();
+	form.reset();
+	render();
+});

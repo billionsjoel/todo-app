@@ -4,7 +4,7 @@ export default class Tasks {
 	}
 
 	add(task) {
-		task.index = this.list.lenth + 1;
+		task.index = this.list.length + 1;
 		task.completed = false;
 		this.list.push(task);
 	}
