@@ -5,10 +5,10 @@ const refresh = document.querySelector('.refresh');
 const form = document.querySelector('.task-form');
 const ul = document.querySelector('.ul');
 
-const tasks = new Tasks(localStorage.getItem('tasks'));
+const tasks = new Tasks(localStorage.getItem('tasksDB'));
 
-const saveTasks = () => {
-	localStorage.setItem('tasks', JSON.stringify(tasks.allTasks));
+const saveTasksToStorage = () => {
+	localStorage.setItem('tasksDB', JSON.stringify(tasks.allTasks));
 };
 
 const renderTasks = () => {
@@ -50,16 +50,16 @@ const renderTasks = () => {
 
 	allListItems.forEach((li) => {
 		li.addEventListener('click', (e) => {
-			const listTarget = e.target;
+			const listItem = e.target;
 			if (
-				listTarget.classList.contains('drag') ||
-				listTarget.classList.contains('check')
+				listItem.classList.contains('drag') ||
+				listItem.classList.contains('check')
 			) {
 				return;
 			}
 
-			allListItems.forEach((listTarget) =>
-				listTarget.classList.remove('active')
+			allListItems.forEach((listItem) =>
+				listItem.classList.remove('active')
 			);
 			li.classList.add('active');
 
@@ -80,31 +80,33 @@ const renderTasks = () => {
 
 		inp.addEventListener('input', () => {
 			const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
-			const obj = tasks.allTasks.find((t) => t.index === id);
-			obj.description = inp.value.trim();
-			tasks.editTask(obj);
-			saveTasks();
+			const newTaskList = tasks.allTasks.find((t) => t.index === id);
+			newTaskList.description = inp.value.trim();
+			tasks.editTask(newTaskList);
+			saveTasksToStorage();
 		});
 	});
 
 	document.querySelectorAll('li .check').forEach((input) => {
 		input.addEventListener('change', () => {
-			const id = Number(input.parentNode.parentNode.id.split('-')[1]);
+			const taskID = Number(input.parentNode.parentNode.id.split('-')[1]);
 
-			const obj = tasks.allTasks.find((task) => task.index === id);
+			const newTaskList = tasks.allTasks.find((task) => task.index === taskID);
 
-			obj.completed = input.checked;
+			newTaskList.completed = input.checked;
 
-			tasks.editTask(obj);
-			saveTasks();
+			tasks.editTask(newTaskList);
+			saveTasksToStorage();
 		});
 	});
 
 	document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
 		deleteButton.addEventListener('click', () => {
-			const id = Number(deleteButton.parentNode.parentNode.id.split('-')[1]);
-			tasks.removeTask(id);
-			saveTasks();
+			const taskID = Number(
+				deleteButton.parentNode.parentNode.id.split('-')[1]
+			);
+			tasks.removeTask(taskID);
+			saveTasksToStorage();
 			deleteButton.parentNode.parentNode.remove();
 		});
 	});
@@ -115,7 +117,7 @@ renderTasks();
 const removeAll = document.querySelector('.remove-all');
 removeAll.addEventListener('click', () => {
 	tasks.clearMarkedTasks();
-	saveTasks();
+	saveTasksToStorage();
 	renderTasks();
 });
 
@@ -124,7 +126,7 @@ form.addEventListener('submit', (e) => {
 	tasks.addTask({
 		description: form.elements.input.value.trim(),
 	});
-	saveTasks();
+	saveTasksToStorage();
 	form.reset();
 	renderTasks();
 });
