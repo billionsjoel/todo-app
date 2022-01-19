@@ -14,8 +14,14 @@ describe('Testing add method ', () => {
 	});
 });
 
-test('first element deleted', () => {
-	const taskID = 1;
-	tasks.removeTask(taskID);
-	expect(tasks.allTasks.length).toBe(1);
+describe('Testing for delete method', () => {
+	test('first element deleted', () => {
+		const taskID = 1;
+		tasks.removeTask(taskID);
+		expect(tasks.allTasks.length).toBe(1);
+	});
+	test('remove function has been called', () => {
+		const f = jest.fn(tasks.removeTask());
+		expect(f.mock.calls.length).toBe(0);
+	});
 });
