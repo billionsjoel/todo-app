@@ -8,23 +8,23 @@ const ul = document.querySelector('.ul');
 const tasks = new Tasks(localStorage.getItem('tasksDB'));
 
 const saveTasksToStorage = () => {
-	localStorage.setItem('tasksDB', JSON.stringify(tasks.allTasks));
+  localStorage.setItem('tasksDB', JSON.stringify(tasks.allTasks));
 };
 
 const renderTasks = () => {
-	ul.innerHTML = '';
+  ul.innerHTML = '';
 
-	tasks.allTasks
-		.sort((a, b) => a.index - b.index)
-		.forEach((task) => {
-			ul.innerHTML += `<li class="li" id="task-${task.index}">
+  tasks.allTasks
+    .sort((a, b) => a.index - b.index)
+    .forEach((task) => {
+      ul.innerHTML += `<li class="li" id="task-${task.index}">
           <div class="inputs">
               <input type="checkbox" class="check" name="checkTask" ${
-								task.completed ? 'checked' : ''
-							}>
+  task.completed ? 'checked' : ''
+}>
               <input  class="label input" type="text" value="${
-								task.description
-							}" readonly>
+  task.description
+}" readonly>
           </div>
           <div class="input-icons">
           <svg height="15" width="15" xmlns="http://www.w3.org/2000/svg" class="drag" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -35,96 +35,95 @@ const renderTasks = () => {
           </svg>
           </div>
           </li>`;
-		});
+    });
 
-	const spin = () => {
-		refresh.classList.add('rotate');
-		setTimeout(() => refresh.classList.remove('rotate'), 1000);
-	};
+  const spin = () => {
+    refresh.classList.add('rotate');
+    setTimeout(() => refresh.classList.remove('rotate'), 1000);
+  };
 
-	if (refresh) {
-		refresh.addEventListener('click', spin);
-	}
+  if (refresh) {
+    refresh.addEventListener('click', spin);
+  }
 
-	const allListItems = document.querySelectorAll('li');
+  const allListItems = document.querySelectorAll('li');
 
-	allListItems.forEach((li) => {
-		li.addEventListener('click', (e) => {
-			const listItem = e.target;
-			if (
-				listItem.classList.contains('drag') ||
-				listItem.classList.contains('check')
-			) {
-				return;
-			}
+  allListItems.forEach((li) => {
+    li.addEventListener('click', (e) => {
+      const listItem = e.target;
+      if (
+        listItem.classList.contains('drag') || listItem.classList.contains('check')
+      ) {
+        return;
+      }
 
-			allListItems.forEach((listItem) => listItem.classList.remove('active'));
-			li.classList.add('active');
+      allListItems.forEach((listItem) => listItem.classList.remove('active'));
+      li.classList.add('active');
 
-			const listItemInput = li.querySelector('.input');
-			listItemInput.readOnly = false;
-			listItemInput.focus();
-			listItemInput.setSelectionRange(
-				listItemInput.value.length,
-				listItemInput.value.length
-			);
-		});
-	});
+      const listItemInput = li.querySelector('.input');
+      listItemInput.readOnly = false;
+      listItemInput.focus();
+      listItemInput.setSelectionRange(
+        listItemInput.value.length,
+        listItemInput.value.length,
+      );
+    });
+  });
 
-	document.querySelectorAll('li .input').forEach((inp) => {
-		inp.addEventListener('focusout', () => {
-			setTimeout(() => {
-				inp.parentNode.parentNode.classList.remove('active');
-				inp.readOnly = true;
-			}, 0);
-		});
+  document.querySelectorAll('li .input').forEach((inp) => {
+    inp.addEventListener('focusout', () => {
+      setTimeout(() => {
+        inp.parentNode.parentNode.classList.remove('active');
+        inp.readOnly = true;
+      }, 0);
+    });
 
-		inp.addEventListener('input', () => {
-			const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
-			const newTaskList = tasks.allTasks.find((t) => t.index === id);
-			newTaskList.description = inp.value.trim();
-			tasks.editTask(newTaskList);
-			saveTasksToStorage();
-		});
-	});
+    inp.addEventListener('input', () => {
+      const id = Number(inp.parentNode.parentNode.id.split('-')[1]);
+      const newTaskList = tasks.allTasks.find((t) => t.index === id);
+      newTaskList.description = inp.value.trim();
+      tasks.editTask(newTaskList);
+      saveTasksToStorage();
+    });
+  });
 
-	document.querySelectorAll('li .check').forEach((input) => {
-		input.addEventListener('change', () => {
-			const taskID = Number(input.parentNode.parentNode.id.split('-')[1]);
-			const newTaskList = tasks.allTasks.find((task) => task.index === taskID);
-			newTaskList.completed = input.checked;
-			tasks.editTask(newTaskList);
-			saveTasksToStorage();
-		});
-	});
+  document.querySelectorAll('li .check').forEach((input) => {
+    input.addEventListener('change', () => {
+      const taskID = Number(input.parentNode.parentNode.id.split('-')[1]);
+      const newTaskList = tasks.allTasks.find((task) => task.index === taskID);
+      newTaskList.completed = input.checked;
+      tasks.editTask(newTaskList);
+      saveTasksToStorage();
+    });
+  });
 
-	document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
-		deleteButton.addEventListener('click', () => {
-			const taskID = Number(
-				deleteButton.parentNode.parentNode.id.split('-')[1]
-			);
-			tasks.removeTask(taskID);
-			saveTasksToStorage();
-			deleteButton.parentNode.parentNode.remove();
-		});
-	});
+  document.querySelectorAll('.delete-icon').forEach((deleteButton) => {
+    deleteButton.addEventListener('click', () => {
+      const taskID = Number(
+        deleteButton.parentNode.parentNode.id.split('-')[1],
+      );
+      tasks.removeTask(taskID);
+      saveTasksToStorage();
+      deleteButton.parentNode.parentNode.remove();
+    });
+  });
 };
 
 renderTasks();
 
 const removeAll = document.querySelector('.remove-all');
 removeAll.addEventListener('click', () => {
-	tasks.clearMarkedTasks();
-	saveTasksToStorage();
-	renderTasks();
+  tasks.clearMarkedTasks();
+  saveTasksToStorage();
+  renderTasks();
 });
 
 form.addEventListener('submit', (e) => {
-	e.preventDefault();
-	tasks.addTask({
-		description: form.elements.input.value.trim(),
-	});
-	saveTasksToStorage();
-	form.reset();
-	renderTasks();
+  e.preventDefault();
+  tasks.addTask({
+    description: form.elements.input.value.trim(),
+  });
+  saveTasksToStorage();
+  form.reset();
+  renderTasks();
 });
