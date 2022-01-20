@@ -42,11 +42,12 @@ describe('checking for editing functionality', () => {
 describe('checking for all completed tasks', () => {
   const tasks = new Tasks();
   tasks.addTask({ description: 'Added new task' });
+
   const newTaskItem = tasks.allTasks[0];
   newTaskItem.completed = true;
   tasks.editTask(newTaskItem);
 
-  it('All checked tasks set to true', () => {
+  test('All checked tasks set to true', () => {
     expect(tasks.allTasks[0].completed).toBeTruthy();
   });
 });
